@@ -107,30 +107,6 @@ local function logout()
   tmpData.CURRENT_USER = nil
 end
 
-local function updateCost(item)
-  -- O/(I-O[+1])/I*M
-  -- ((R-C)/R)*C+C
-  -- (C-R)/3+R
-  local R_cost = math.ceil(db.items[item].o/(db.items[item].i-db.items[item].o+1)/db.items[item].i*cfg.max)
-  local C_cost = db.items[item].cost
-  if C_cost <= R_cost then
-    C_cost = ((R_cost-C_cost)/R_cost)*C_cost+C_cost
-  elseif C_cost > R_cost then
-    C_cost = (C_cost-R_cost)/3+R_cost
-  end
-  if C_cost < 1 then C_cost = 1 end
-  db.items[item].cost = math.ceil(C_cost)
-  --db.items[item].cost = R_cost
-  if os.time()-db.users[tmpData.CURRENT_USER].lastlogin < 259200 then
-    if db.users[tmpData.CURRENT_USER].count <= cfg.logins then
-      db.users[tmpData.CURRENT_USER].count = db.users[tmpData.CURRENT_USER].count + 1
-    end
-  else
-    db.users[tmpData.CURRENT_USER].count = 1
-    db.users[tmpData.CURRENT_USER].lastlogin = os.time()
-  end
-end
-
 local function buy(item, amount)
   local n = item:find('|')
   local fprint = {id = item:sub(1, n-1), dmg = item:sub(1, n+1)}
