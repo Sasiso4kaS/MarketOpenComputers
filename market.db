@@ -1,7 +1,7 @@
 {
   users = {},
   items = {
-    ['minecraft:lapis_ore|0'] = {label = 'Лазуритовая руда', i = 0, o = 0, cost = 1},
-    ['minecraft:experience_bottle|0'] = {label = 'Пузырёк опыта', i = 0, o = 0, cost = 1}
+    ['minecraft:iron_block|0'] = {label = 'Железный блок', i = 0, o = 0, cost = 1,8},
+    ['minecraft:iron_ingot|0'] = {label = 'Железный слиток', i = 0, o = 0, cost = 0,2}
   }
 }
